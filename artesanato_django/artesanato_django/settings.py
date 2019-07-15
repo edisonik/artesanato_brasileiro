@@ -38,6 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # Added.
+    'haystack',
 ]
 
 MIDDLEWARE = [
@@ -79,13 +82,13 @@ DATABASES = {
 #        'ENGINE': 'django.db.backends.sqlite3',
 #        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
 #    }
-'default': {
-       'ENGINE': 'django.db.backends.postgresql_psycopg2',
-       'NAME': 'artesanatobd',
-       'USER': 'artesanatouser',
-       'PASSWORD': 'artesanatosenhabd',
-       'HOST': 'localhost',
-       'PORT': '',
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'artesanatobd',
+        'USER': 'artesanatouser',
+        'PASSWORD': 'artesanatosenhabd',
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
 
@@ -108,13 +111,25 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# Search engine
+
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'haystack.backends.elasticsearch_backend.ElasticsearchSearchEngine',
+        'URL': 'http://127.0.0.1:9200/',
+        'INDEX_NAME': 'haystack',
+    },
+}
+
+HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Sao_Paulo'
 
 USE_I18N = True
 

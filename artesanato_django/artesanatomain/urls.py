@@ -1,4 +1,4 @@
-from django.conf.urls import url
+from django.conf.urls import url, include
 from . import views
 
 urlpatterns = [
@@ -6,4 +6,5 @@ urlpatterns = [
     url(r'^Historia/(?P<historia_id>[0-9]+)$', views.historiaView),
     url(r'^Tecnica/(?P<tecnica_id>[0-9]+)$', views.tecnicaView),
     url(r'^Descubra/', views.descubraView),
+    url(r'^search/', include('haystack.urls')),
 ]

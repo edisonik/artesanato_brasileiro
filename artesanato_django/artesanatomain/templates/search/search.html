@@ -1,0 +1,61 @@
+{% block head %}
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+ 
+{% endblock %}
+{% block navbar %}
+ <nav class="navbar navbar-default">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+  </div>
+</nav>
+{% endblock %}
+{% block content %}
+
+<div class="container-fluid bg-3 text-left">  
+<form method="get" action="." class="form" role="form">
+        {{ form.non_field_errors }}
+        <div class="form-group">
+                {{ form.as_p }}
+        </div>
+        <div class="form-group">
+            <input type="submit" class="btn btn-primary" value="Search">
+        </div>
+ 
+        {% if query %}
+            <h3>Results</h3>
+               
+        <div class="container-fluid bg-4 text-center">    
+                <div class="row">
+     
+                {% for result in page.object_list %}        
+                <div class="col-sm-4">
+                  <div class="thumbnail">
+                              
+                    <div class="form-group">
+                      
+                        <p>{{result.nome}}</p>
+                        <p>{{result.historia}}</p>
+                        <p>{{result.nacionalidade}}</p>
+                    </div>
+                  </div>
+                </div>
+                {% empty %}
+                     
+                   <p style="text-left">No results found.</p>
+                    {% endfor%}
+                </div>
+        </div>   
+            
+        {% endif %}
+</form>
+</div>
+ 
+{% endblock %}
